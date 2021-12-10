@@ -18,16 +18,29 @@ function refresh() {
   }
 }
 
+function format(number) {
+  var Begriff = number.toString();
+  var nBegriff = "";
+  for (var i = Begriff.length - 3; i >0; i-=3){
+    var sub = Begriff.substr(i, 3);
+    if (nBegriff) nBegriff = "." + nBegriff;
+    nBegriff =sub  +nBegriff;
+  }
+  if (nBegriff) nBegriff = "." + nBegriff;
+  nBegriff = Begriff.substr(0, (3+i)) + nBegriff;
+  return nBegriff;
+}
+
 export default function Home({ transactionList, global }) {
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-lightgrey">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-lightgrey">
       <Head>
         <title>Nitroapp: Explorer</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center bg-lightgrey">
+      <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
 
       <Toaster
         position="bottom-center"
@@ -36,12 +49,20 @@ export default function Home({ transactionList, global }) {
 
       <img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 lg:ml-2 mb-5 absolute top-5 left-5" />
 
-        <div className="flex flex-wrap max-w-4xl mt-6 absolute top-24 transition-all lg:px-20 px-5 cursor-default">
-          <div className="mb-10 text-left">
-            <span className="sm:ml-3 absolute right-20 invisible lg:visible justify-around flex flex-wrap">
+        <div className="flex flex-wrap max-w-4xl mt-32 transition-all lg:px-20 px-5 cursor-default">
+          <div className="mb-10 flex">
+            <div className="text-left">
+              <h1 className="text-4xl font-semibold text-black">
+                Home
+              </h1>
+              <p className="text-lg text-black pt-1 font-medium">
+                General overview
+              </p>
+            </div>
+            <span className="sm:ml-3 invisible lg:visible justify-around flex h-10 pl-1">
               <button
                 type="button"
-                className="flex items-center mr-4 pl-5 pr-6 py-2.5 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-almostblack hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black focus:bg-black transition duration-150 ease-in-out"
+                className="flex items-center ml-80 mr-4 pl-5 pr-6 py-2.5 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-almostblack hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black focus:bg-black transition duration-150 ease-in-out"
                 onClick={soon}
               >
                 <SearchIcon className="w-5 h-5 mr-1" />
@@ -56,18 +77,12 @@ export default function Home({ transactionList, global }) {
                 Refresh
               </button>
             </span>
-            <h1 className="text-4xl font-semibold text-black">
-              Home
-            </h1>
-            <p className="text-lg text-black pt-1 font-medium">
-              General overview
-            </p>
           </div>
           <div className="border rounded-xl w-full flex flex-wrap items-center justify-around bg-white hover:bg-lightgrey lg:visible invisible transition-all hover:ring-2 hover:ring-indigo-500">
             <a
               className="p-6 text-left w-48 rounded-xl"
             >
-              <h3 className="text-xl font-bold">{ global[0].total }</h3>
+              <h3 className="text-xl font-bold">{ format(global[0].total) }</h3>
               <p className="mt-1 text-md">
                 Total
               </p>
@@ -76,7 +91,7 @@ export default function Home({ transactionList, global }) {
             <a
               className="p-6 text-left w-48 rounded-xl"
             >
-              <h3 className="text-xl font-bold">{ global[0].average }</h3>
+              <h3 className="text-xl font-bold">{ format(global[0].average) }</h3>
               <p className="mt-1 text-md">
                 Average
               </p>
@@ -91,7 +106,7 @@ export default function Home({ transactionList, global }) {
               </p>
             </a>
           </div>
-          <div className="w-full flex flex-wrap items-left mt-10">
+          <div className="w-full flex flex-wrap items-left mt-10 mb-28">
             <a className="text-left">
               <h3 className="text-lg font-medium">Last transactions</h3>
             </a>
