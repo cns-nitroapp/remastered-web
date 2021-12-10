@@ -12,7 +12,7 @@ export default function Home() {
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center bg-lightgrey">
       <img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 lg:ml-2 mb-5 absolute top-5 left-5" />
 
-        <div className="flex flex-wrap max-w-4xl mt-6 absolute top-24 transition-all lg:px-20 px-5">
+        <div className="flex flex-wrap max-w-4xl mt-6 absolute top-24 transition-all lg:px-20 px-5 cursor-default">
           <div className="mb-10 text-left">
             <span className="sm:ml-3 absolute right-20 invisible lg:visible justify-around flex flex-wrap">
               <button
@@ -37,9 +37,9 @@ export default function Home() {
               General overview
             </p>
           </div>
-          <div className="border rounded-xl w-full flex flex-wrap items-center justify-around bg-white hover:bg-darkgrey lg:visible invisible">
+          <div className="border rounded-xl w-full flex flex-wrap items-center justify-around bg-white hover:bg-darkgrey lg:visible invisible transition-all hover:ring-2 hover:ring-indigo-500">
             <a
-              className="p-6 text-left w-48 rounded-xl pointer-events-none"
+              className="p-6 text-left w-48 rounded-xl"
             >
               <h3 className="text-xl font-bold">1.000.000</h3>
               <p className="mt-1 text-md">
@@ -48,7 +48,7 @@ export default function Home() {
             </a>
 
             <a
-              className="p-6 text-left w-48 rounded-xl pointer-events-none"
+              className="p-6 text-left w-48 rounded-xl"
             >
               <h3 className="text-xl font-bold">500.000</h3>
               <p className="mt-1 text-md">
@@ -57,12 +57,31 @@ export default function Home() {
             </a>
 
             <a
-              className="p-6 text-left w-48 rounded-xl pointer-events-none"
+              className="p-6 text-left w-48 rounded-xl"
             >
               <h3 className="text-xl font-bold">24</h3>
               <p className="mt-1 text-md">
                 Players
               </p>
+            </a>
+          </div>
+          <div className="w-full flex flex-wrap items-left mt-10">
+            <a className="text-left">
+              <h3 className="text-lg font-medium">Last transactions</h3>
+            </a>
+          </div>
+          <div className="border rounded-xl w-full flex flex-wrap items-center justify-around bg-white lg:visible invisible transition-all mt-10 p-6">
+            <a className="w-full flex flex-wrap items-left justify-around p-3 mb-5 rounded-xl font-medium">
+              <p>From</p>
+              <p>to</p>
+              <p>Amount</p>
+              <p>Timestamp</p>
+            </a>
+            <a className="w-full flex flex-wrap items-left justify-around p-3 m-2 border rounded-xl hover:ring-2 hover:ring-indigo-500 transition-all">
+              <p>123</p>
+              <p>3123123</p>
+              <p>69</p>
+              <p>12:012 CET</p>
             </a>
           </div>
         </div>
