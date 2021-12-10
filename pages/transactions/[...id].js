@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { RefreshIcon, SearchIcon } from '@heroicons/react/solid';
+import { ChevronLeftIcon } from '@heroicons/react/solid';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 
@@ -7,10 +7,6 @@ import { useRouter } from 'next/router';
 <a href={"/uuid/" + x.sender.uuid} className="hover:text-indigo-700 transition-all">{x.sender.name}</a>
 <a href={"/uuid/" + x.receiver.uuid} className="hover:text-indigo-700 transition-all">{x.receiver.name}</a>
 */
-
-const soon = () => toast.error('Feature coming soon', { icon: "⏳",  style: { fontWeight: "bold" } });
-const loading = () => toast.loading("Refreshing...", { autoClose: true, duration: 1700 });
-
 
 function format(number) {
   var Begriff = number.toString();
@@ -27,7 +23,7 @@ function format(number) {
 
 export default function Home({ transactionList, global }) {
 
-  const router = useRouter();
+    const router = useRouter();
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-lightgrey">
@@ -43,35 +39,27 @@ export default function Home({ transactionList, global }) {
         reverseOrder={false}
       />
 
-      <img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 lg:ml-2 mb-5 absolute top-5 left-5 focus:outline-none hover:ring-2 hover:ring-offset-2 rounded-xl transition-all" onClick={() => router.push("/")}/>
+<img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 lg:ml-2 mb-5 absolute top-5 left-5 hover:bg-gray-200 rounded-xl transition-all" onClick={() => router.push("/")}/>
 
       <div className="flex flex-wrap max-w-4xl mt-32 transition-all lg:px-18 cursor-default justify-between w-full px-5">
         <div className="text-center py-2">
           <div className="text-left">
             <h1 className="text-4xl font-semibold text-black">
-              Home
+              Transaction
             </h1>
-            <p className="text-lg text-black pt-1 font-medium">
-              General overview
+            <p className="text-lg text-black pt-1 font-normal">
+              { router.query.id }
             </p>
           </div>
         </div>
         <div className="flex text-center h-10">
           <button
             type="button"
-            className="flex items-center mr-4 pl-5 pr-6 py-2.5 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-almostblack hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black focus:bg-black transition duration-150 ease-in-out"
-            onClick={soon}
+            className="flex items-center pl-5 pr-6 py-2.5 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-almostblack hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black focus:bg-black transition duration-150 ease-in-out"
+            onClick={() => router.push("/")}
           >
-            <SearchIcon className="w-5 h-5 mr-1" />
-            Lookup
-          </button>
-          <button
-            type="button"
-            className="flex items-center pl-5 pr-6 py-2.5 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:bg-indigo-600 transition duration-150 ease-in-out"
-            onClick={() => router.push("/"), loading}
-          >
-            <RefreshIcon className="w-5 h-5 mr-2" />
-            Refresh
+            <ChevronLeftIcon className="w-5 h-5 mr-1" />
+            Back
           </button>
         </div>
       </div>
@@ -105,28 +93,9 @@ export default function Home({ transactionList, global }) {
               </p>
             </a>
           </div>
-          <div className="w-full flex flex-wrap items-left mt-28 mb-28">
-            <a className="text-left">
-              <h3 className="text-lg font-medium">Latest transactions</h3>
-            </a>
+          <div className="w-full flex flex-wrap items-left mt-8 mb-28">
             <div className="border rounded-xl w-full flex flex-wrap text-left justify-around bg-white lg:visible transition-all mt-10 p-6">
               <table className="table-auto w-full">
-                        <thead className="text-md font-semibold">
-                            <tr className="mb-5">
-                                <th className="p-5 whitespace-nowrap">
-                                    <div className="font-semibold text-left">From</div>
-                                </th>
-                                <th className="p-5 whitespace-nowrap">
-                                    <div className="font-semibold text-left">To</div>
-                                </th>
-                                <th className="p-0 whitespace-nowrap">
-                                    <div className="font-semibold text-left">Amount</div>
-                                </th>
-                                <th className="p-0 whitespace-nowrap">
-                                    <div className="font-semibold text-center">ID</div>
-                                </th>
-                            </tr>
-                        </thead>
                         <tbody className="text-md divide">
                         {transactionList.transactions.map((x, i) => <tr key={i} className="cursor-pointer" onClick={ () => router.push("/transactions/" + x._id) }>
                                 <td className="p-5 whitespace-nowrap mb-5 font-medium">

@@ -11,6 +11,12 @@ import { useRouter } from 'next/router';
 const soon = () => toast.error('Feature coming soon', { icon: "⏳",  style: { fontWeight: "bold" } });
 const loading = () => toast.loading("Refreshing...", { autoClose: true, duration: 1700 });
 
+function refresh() {
+  const router = useRouter();
+  const refreshData = () => {
+    router.replace(router.asPath);
+  }
+}
 
 function format(number) {
   var Begriff = number.toString();
@@ -27,7 +33,7 @@ function format(number) {
 
 export default function Home({ transactionList, global }) {
 
-  const router = useRouter();
+  console.log(transactionList);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-lightgrey">
@@ -43,10 +49,10 @@ export default function Home({ transactionList, global }) {
         reverseOrder={false}
       />
 
-      <img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 lg:ml-2 mb-5 absolute top-5 left-5 focus:outline-none hover:ring-2 hover:ring-offset-2 rounded-xl transition-all" onClick={() => router.push("/")}/>
+      <img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 lg:ml-2 mb-5 absolute top-5 left-5" />
 
-      <div className="flex flex-wrap max-w-4xl mt-32 transition-all lg:px-18 cursor-default justify-between w-full px-5">
-        <div className="text-center py-2">
+      <div class="flex flex-wrap max-w-4xl mt-32 transition-all lg:px-18 cursor-default justify-between w-full px-5">
+        <div class="text-center py-2">
           <div className="text-left">
             <h1 className="text-4xl font-semibold text-black">
               Home
@@ -56,7 +62,7 @@ export default function Home({ transactionList, global }) {
             </p>
           </div>
         </div>
-        <div className="flex text-center h-10">
+        <div class="flex text-center h-10">
           <button
             type="button"
             className="flex items-center mr-4 pl-5 pr-6 py-2.5 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-almostblack hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black focus:bg-black transition duration-150 ease-in-out"
@@ -68,7 +74,7 @@ export default function Home({ transactionList, global }) {
           <button
             type="button"
             className="flex items-center pl-5 pr-6 py-2.5 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 focus:bg-indigo-600 transition duration-150 ease-in-out"
-            onClick={() => router.push("/"), loading}
+            onClick={refresh(), loading}
           >
             <RefreshIcon className="w-5 h-5 mr-2" />
             Refresh
@@ -128,7 +134,7 @@ export default function Home({ transactionList, global }) {
                             </tr>
                         </thead>
                         <tbody className="text-md divide">
-                        {transactionList.transactions.map((x, i) => <tr key={i} className="cursor-pointer" onClick={ () => router.push("/transactions/" + x._id) }>
+                        {transactionList.transactions.map((x, i) => <tr key={i}>
                                 <td className="p-5 whitespace-nowrap mb-5 font-medium">
                                     <div className="flex items-center">
                                         <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img className="rounded-full hover:ring-2 hover:ring-indigo-500 hover:ring-offset-2 transition-all" src={"https://visage.surgeplay.com/face/32/" + x.sender.uuid} width="32" height="32"></img></div>
@@ -136,13 +142,13 @@ export default function Home({ transactionList, global }) {
                                     </div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap">
-                                    <div className="text-left pb-2">{x.receiver.name}</div>
+                                    <div className="text-left">{x.receiver.name}</div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap">
-                                    <div className="text-left font-medium text-green-500 pb-2">{x.amount} CRD</div>
+                                    <div className="text-left font-medium text-green-500">{x.amount} CRD</div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap">
-                                    <div className="text-center hover:text-indigo-500 transition-all pb-2" >{x._id}</div>
+                                    <div className="text-center hover:text-indigo-500 transition-all">{x._id}</div>
                                 </td>
                             </tr>)}
                         </tbody>
