@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { RefreshIcon, SearchIcon } from '@heroicons/react/solid';
+import { RefreshIcon, SearchIcon, BadgeCheckIcon } from '@heroicons/react/solid';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 
@@ -132,11 +132,17 @@ export default function Home({ transactionList, global }) {
                                 <td className="p-5 whitespace-nowrap mb-5 font-medium">
                                     <div className="flex items-center">
                                         <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img className="rounded-full hover:ring-2 hover:ring-indigo-500 hover:ring-offset-2 transition-all" src={"https://visage.surgeplay.com/face/32/" + x.sender.uuid} width="32" height="32"></img></div>
-                                        <div className="font-medium text-gray-800 pb-2">{x.sender.name}</div>
+                                        {
+                                          x.sender.name === "Nitroapp" ? (
+                                            <div className="font-medium text-gray-800 pb-2">{x.sender.name}<BadgeCheckIcon className="ml-1 inline-block w-5 text-indigo-500" /></div>
+                                          ) : (
+                                            <div className="font-medium text-gray-800 pb-2">{x.sender.name}</div>
+                                          )
+                                        }
                                     </div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap">
-                                    <div className="text-left pb-2">{x.receiver.name}</div>
+                                  <div className="text-left pb-2">{x.receiver.name}</div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap">
                                     <div className="text-left font-medium text-green-500 pb-2">{x.amount} CRD</div>

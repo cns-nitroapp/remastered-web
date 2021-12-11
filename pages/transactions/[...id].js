@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { ChevronLeftIcon } from '@heroicons/react/solid';
+import { ChevronLeftIcon, BadgeCheckIcon, ShoppingCartIcon, CashIcon } from '@heroicons/react/solid';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 
@@ -21,7 +21,7 @@ function format(number) {
   return nBegriff;
 }
 
-export default function Home({ transactionList, global }) {
+export default function Home({ transactionData }) {
 
     const router = useRouter();
 
@@ -39,7 +39,7 @@ export default function Home({ transactionList, global }) {
         reverseOrder={false}
       />
 
-<img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 lg:ml-2 mb-5 absolute top-5 left-5 hover:bg-gray-200 rounded-xl transition-all" onClick={() => router.push("/")}/>
+<img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 lg:ml-2 mb-5 absolute top-5 left-5 focus:outline-none hover:ring-2 hover:ring-offset-2 rounded-xl transition-all" onClick={() => router.push("/")}/>
 
       <div className="flex flex-wrap max-w-4xl mt-32 transition-all lg:px-18 cursor-default justify-between w-full px-5">
         <div className="text-center py-2">
@@ -67,57 +67,140 @@ export default function Home({ transactionList, global }) {
         <div className="flex flex-wrap max-w-4xl mt-12 transition-all lg:px-18 px-5 cursor-default">
         <div className="border rounded-xl w-full flex flex-wrap items-center justify-around bg-white hover:bg-lightgrey lg:visible invisible transition-all hover:ring-2 hover:ring-indigo-500">
             <a
-              className="p-6 text-left w-52 rounded-xl"
+              className="p-6 text-left w-48 rounded-xl"
             >
-              <h3 className="text-xl font-bold">{ format(global[0].total) } CRD</h3>
+              <h3 className="text-xl font-bold">{ transactionData.transaction[0].sender.name }</h3>
               <p className="mt-1 text-md">
-                Total
+                Sender
               </p>
             </a>
 
             <a
-              className="p-6 text-left w-52 rounded-xl"
+              className="p-6 text-left w-48 rounded-xl"
             >
-              <h3 className="text-xl font-bold">{ format(global[0].average) } CRD</h3>
+              <h3 className="text-xl font-bold">{ transactionData.transaction[0].receiver.name }</h3>
               <p className="mt-1 text-md">
-                Average
+                Recipient
               </p>
             </a>
 
             <a
-              className="p-6 text-left w-32 rounded-xl"
+              className="p-6 text-left w-48 rounded-xl"
             >
-              <h3 className="text-xl font-bold">{ global[0].amount }</h3>
+              <h3 className="text-xl font-bold">{ format(transactionData.transaction[0].amount) } CRD</h3>
               <p className="mt-1 text-md">
-                Players
+                Amount
               </p>
             </a>
           </div>
-          <div className="w-full flex flex-wrap items-left mt-8 mb-28">
-            <div className="border rounded-xl w-full flex flex-wrap text-left justify-around bg-white lg:visible transition-all mt-10 p-6">
+          <div className="w-full flex flex-wrap items-left mt-8 mb-8">
+          <a className="text-left">
+              <h3 className="text-lg font-medium">Sender</h3>
+            </a>
+            <div className="border rounded-xl w-full flex flex-wrap text-left justify-around bg-white lg:visible mt-10 p-6 transition-all hover:ring-2 hover:ring-indigo-500">
               <table className="table-auto w-full">
                         <tbody className="text-md divide">
-                        {transactionList.transactions.map((x, i) => <tr key={i} className="cursor-pointer" onClick={ () => router.push("/transactions/" + x._id) }>
+                        <tr>
                                 <td className="p-5 whitespace-nowrap mb-5 font-medium">
                                     <div className="flex items-center">
-                                        <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img className="rounded-full hover:ring-2 hover:ring-indigo-500 hover:ring-offset-2 transition-all" src={"https://visage.surgeplay.com/face/32/" + x.sender.uuid} width="32" height="32"></img></div>
-                                        <div className="font-medium text-gray-800 pb-2">{x.sender.name}</div>
+                                    <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img className="rounded-full hover:ring-2 hover:ring-indigo-500 hover:ring-offset-2 transition-all" src={"https://visage.surgeplay.com/face/32/" + transactionData.transaction[0].sender.uuid} width="32" height="32"></img></div>
+                                        {
+                                            transactionData.transaction[0].sender.name === "Nitroapp" ? (
+                                              <div className="font-medium text-gray-800 pb-2">{ transactionData.transaction[0].sender.name }<BadgeCheckIcon className="ml-1 inline-block w-5 text-indigo-500" /></div>
+                                            ) : (
+                                              <div className="font-medium text-gray-800 pb-2">{ transactionData.transaction[0].sender.name }</div>
+                                            )
+                                        }
                                     </div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap">
-                                    <div className="text-left pb-2">{x.receiver.name}</div>
+                                    <div className="text-left pb-2">{ transactionData.transaction[0].sender.uuid }</div>
                                 </td>
-                                <td className="p-2 whitespace-nowrap">
-                                    <div className="text-left font-medium text-green-500 pb-2">{x.amount} CRD</div>
-                                </td>
-                                <td className="p-2 whitespace-nowrap">
-                                    <div className="text-center hover:text-indigo-500 transition-all pb-2" >{x._id}</div>
-                                </td>
-                            </tr>)}
+                                {
+                                  transactionData.transaction[0].sender.name === "Nitroapp" ? (
+                                    <td className="p-2 whitespace-nowrap">
+                                      <div className="font-medium text-gray-800 pb-2">
+                                        Virtual Offer
+                                        <ShoppingCartIcon className="ml-2 inline-block w-5 text-indigo-500" />
+                                      </div>
+                                    </td>
+                                  ) : (
+                                    <td className="p-2 whitespace-nowrap">
+                                      <div className="font-medium text-gray-800 pb-2">
+                                        Payment
+                                        <CashIcon className="ml-2 inline-block w-5 text-indigo-500" />
+                                      </div>
+                                    </td>
+                                  )
+                                }
+                            </tr>
                         </tbody>
                     </table>
 
             </div>
+          </div>
+          <div className="w-full flex flex-wrap items-left mt-0 mb-28">
+          <a className="text-left">
+              <h3 className="text-lg font-medium">Recipient</h3>
+            </a>
+            <div className="border rounded-xl w-full flex flex-wrap text-left justify-around bg-white lg:visible mt-10 p-6 transition-all hover:ring-2 hover:ring-indigo-500">
+              <table className="table-auto w-full">
+                        <tbody className="text-md divide">
+                        <tr>
+                                <td className="p-5 whitespace-nowrap mb-5 font-medium">
+                                    <div className="flex items-center">
+                                    <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3"><img className="rounded-full hover:ring-2 hover:ring-indigo-500 hover:ring-offset-2 transition-all" src={"https://visage.surgeplay.com/face/32/" + transactionData.transaction[0].receiver.uuid} width="32" height="32"></img></div>
+                                      {
+                                            transactionData.transaction[0].receiver.name === "Nitroapp" ? (
+                                              <div className="font-medium text-gray-800 pb-2">{ transactionData.transaction[0].receiver.name }<BadgeCheckIcon className="ml-1 inline-block w-5 text-indigo-500" /></div>
+                                            ) : (
+                                              <div className="font-medium text-gray-800 pb-2">{ transactionData.transaction[0].receiver.name }</div>
+                                            )
+                                        }
+                                    </div>
+                                </td>
+                                <td className="p-2 whitespace-nowrap">
+                                    <div className="text-left pb-2">{ transactionData.transaction[0].receiver.uuid }</div>
+                                </td>
+                                {
+                                  transactionData.transaction[0].receiver.name === "Nitroapp" ? (
+                                    <td className="p-2 whitespace-nowrap">
+                                      <div className="font-medium text-gray-800 pb-2">
+                                        Virtual Offer
+                                        <ShoppingCartIcon className="ml-2 inline-block w-5 text-indigo-500" />
+                                      </div>
+                                    </td>
+                                  ) : (
+                                    <td className="p-2 whitespace-nowrap">
+                                      <div className="font-medium text-gray-800 pb-2">
+                                        Payment
+                                        <CashIcon className="ml-2 inline-block w-5 text-indigo-500" />
+                                      </div>
+                                    </td>
+                                  )
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+
+            </div>
+            <div className="w-full flex flex-wrap items-center justify-around mt-7">
+            <a
+              className="p-4 text-left w-half rounded-xl"
+            >
+              <p className="mt-1 text-md font-medium">
+                Transaction executed: <p className="inline-block font-normal">{ transactionData.transaction[0].timestamp }</p>
+              </p>
+            </a>
+
+            <a
+              className="p-4 text-left w-half rounded-xl"
+            >
+              <p className="mt-1 text-md font-medium">
+                Lookup requested: <p className="inline-block font-normal">{ transactionData.timestamp }</p>
+              </p>
+            </a>
+          </div>
           </div>
         </div>
       </main>
@@ -125,19 +208,14 @@ export default function Home({ transactionList, global }) {
   )
 }
 
-export const getServerSideProps = async () => {
-  const [tres, gres] = await Promise.all([
-    fetch("https://api.remastered.nitroapp.de/transactions"),
-    fetch("https://api.remastered.nitroapp.de/global")
-  ]);
-  const [transactionList, global] = await Promise.all([
-    tres.json(),
-    gres.json(),
-  ]);
+export const getServerSideProps = async ({ query }) => {
+
+  const id = query.id;
+  const res = await fetch(`https://api.remastered.nitroapp.de/transactions/${id}`);
+  const data = await res.json();
   return {
     props: {
-      transactionList: transactionList,
-      global: global['stats'],
-    },
-  };
-};
+      transactionData: data,
+    }
+  }
+}
