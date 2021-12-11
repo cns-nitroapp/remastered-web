@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { ChevronLeftIcon, BadgeCheckIcon, ShoppingCartIcon, CashIcon } from '@heroicons/react/solid';
+import { ChevronLeftIcon, BadgeCheckIcon, UserIcon, ChipIcon } from '@heroicons/react/solid';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
 
@@ -120,15 +120,15 @@ export default function Home({ transactionData }) {
                                   transactionData.transaction[0].sender.name === "Nitroapp" ? (
                                     <td className="p-2 whitespace-nowrap">
                                       <div className="font-medium text-gray-800 pb-2">
-                                        Virtual Offer
-                                        <ShoppingCartIcon className="ml-2 inline-block w-5 text-indigo-500" />
+                                        Computer
+                                        <ChipIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
                                     </td>
                                   ) : (
                                     <td className="p-2 whitespace-nowrap">
                                       <div className="font-medium text-gray-800 pb-2">
-                                        Payment
-                                        <CashIcon className="ml-2 inline-block w-5 text-indigo-500" />
+                                        Player
+                                        <UserIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
                                     </td>
                                   )
@@ -166,15 +166,15 @@ export default function Home({ transactionData }) {
                                   transactionData.transaction[0].receiver.name === "Nitroapp" ? (
                                     <td className="p-2 whitespace-nowrap">
                                       <div className="font-medium text-gray-800 pb-2">
-                                        Virtual Offer
-                                        <ShoppingCartIcon className="ml-2 inline-block w-5 text-indigo-500" />
+                                        Computer
+                                        <ChipIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
                                     </td>
                                   ) : (
                                     <td className="p-2 whitespace-nowrap">
                                       <div className="font-medium text-gray-800 pb-2">
-                                        Payment
-                                        <CashIcon className="ml-2 inline-block w-5 text-indigo-500" />
+                                        Player
+                                        <UserIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
                                     </td>
                                   )
