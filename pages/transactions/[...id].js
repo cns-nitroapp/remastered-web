@@ -224,7 +224,13 @@ export default function Home({ transactionData }) {
 export const getServerSideProps = async ({ query }) => {
 
   const id = query.id;
-  const res = await fetch(`https://api.remastered.nitroapp.de/transactions/${id}`);
+  const res = await fetch(`https://api.remastered.nitroapp.de/transactions/${id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Cache-Control': 'max-age=900',
+    }
+  });
   const data = await res.json();
   return {
     props: {
