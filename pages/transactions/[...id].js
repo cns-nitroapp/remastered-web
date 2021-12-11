@@ -46,10 +46,10 @@ export default function Home({ transactionData }) {
       <div className="flex flex-wrap max-w-4xl mt-32 transition-all lg:px-18 cursor-default justify-between w-full px-5">
         <div className="text-center py-2">
           <div className="text-left">
-            <h1 className="text-4xl font-semibold text-black hover:text-indigo-500 hover:transition-all" onClick={() => router.push("/")}>
+            <h1 className="text-4xl font-semibold text-black" onClick={() => router.push("/")}>
               Transaction
             </h1>
-            <p className="text-lg text-black pt-1 font-normal hover:text-indigo-500 hover:transition-all">
+            <p className="text-lg text-black pt-1 font-normal">
               { router.query.id }
             </p>
           </div>
