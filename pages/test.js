@@ -1,34 +1,40 @@
-import React from "react";
+import cache from "memory-cache";
 
-const Index = ({ transactionList }) => <div style={{ margin: 20 }}>
-    <div className="border rounded-xl w-full flex flex-wrap items-center justify-around bg-white lg:visible invisible transition-all mt-10 p-6">
-            <a className="w-full flex flex-wrap items-left justify-around p-3 mb-5 rounded-xl font-medium">
-              <p>From</p>
-              <p>to</p>
-              <p>Amount</p>
-              <p>Timestamp</p>
-            </a>
-            {transactionList.transactions.map((x, i) => <div key={i} className="w-full flex flex-wrap items-left justify-around p-3 m-2 border rounded-xl hover:bg-lightgrey hover:ring-2 hover:ring-indigo-500 transition-all hover:ring-offset-2">
-              <a className="hover:text-indigo-700 transition-all">{x.sender.name}</a>
-              <a className="hover:text-indigo-700 transition-all">{x.receiver.name}</a>
-              <a>{x.amount}</a>
-              <a>{x.timestamp}</a>
-            </div>)}
+const cachedFetch = async (url) => {
+  const cachedResponse = cache.get(url);
+  if (cachedResponse) {
+    return cachedResponse;
+  } else {
+    const hours = 24;
+    const response = await fetch(url);
+    const data = await response.json();
+    cache.put(url, data, hours * 1000 * 60 * 60);
+    return data;
+  }
+};
+
+const regularFetch = async (url) => {
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
+};
+
+
+export default function Home({ data }) {
+  return (
+    <div>
+      { data }
     </div>
-</div>
- 
-
-class transactionData extends React.Component {
-    static async getInitialProps(ctx) {
-      const res = await fetch('https://api.remastered.nitroapp.de/transactions')
-      const json = await res.json()
-      return { transactionList: json }
-    }
-  
-    render() {
-      return Index(this.props)
-    }
+  );
 }
- 
-export default transactionData;
 
+// Get serverside props
+export async function getServerSideProps() {
+  const data = await cachedFetch('https://api.remastered.nitroapp.de/overview');
+  return {
+    props: {
+      transactionData: data.transactions.transactions,
+      global: data.global["stats"],
+    }
+  }
+}

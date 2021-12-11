@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { ChevronLeftIcon, BadgeCheckIcon, UserIcon, ChipIcon } from '@heroicons/react/solid';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import cachedFetch from '../../libs/fetch';
 
 /*
 <a href={"/uuid/" + x.sender.uuid} className="hover:text-indigo-700 transition-all">{x.sender.name}</a>
@@ -45,10 +46,10 @@ export default function Home({ transactionData }) {
       <div className="flex flex-wrap max-w-4xl mt-32 transition-all lg:px-18 cursor-default justify-between w-full px-5">
         <div className="text-center py-2">
           <div className="text-left">
-            <h1 className="text-4xl font-semibold text-black">
+            <h1 className="text-4xl font-semibold text-black hover:text-indigo-500 hover:transition-all" onClick={() => router.push("/")}>
               Transaction
             </h1>
-            <p className="text-lg text-black pt-1 font-normal">
+            <p className="text-lg text-black pt-1 font-normal hover:text-indigo-500 hover:transition-all">
               { router.query.id }
             </p>
           </div>
@@ -224,14 +225,8 @@ export default function Home({ transactionData }) {
 export const getServerSideProps = async ({ query }) => {
 
   const id = query.id;
-  const res = await fetch(`https://api.remastered.nitroapp.de/transactions/${id}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'max-age=900',
-    }
-  });
-  const data = await res.json();
+  const data = await cachedFetch(`https://api.remastered.nitroapp.de/transactions/${id}`);
+
   return {
     props: {
       transactionData: data,

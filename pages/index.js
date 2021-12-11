@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { RefreshIcon, SearchIcon, BadgeCheckIcon } from '@heroicons/react/solid';
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from 'next/router';
+import cachedFetch from '../libs/fetch';
 
 /*
 <a href={"/uuid/" + x.sender.uuid} className="hover:text-indigo-700 transition-all">{x.sender.name}</a>
@@ -140,18 +141,18 @@ export default function Home({ transactionList, global }) {
                                         }
                                         {
                                           x.sender.name === "Nitroapp" ? (
-                                            <div className="font-medium text-gray-800 pb-2">{x.sender.name}<BadgeCheckIcon className="ml-1 inline-block w-5 text-indigo-500" /></div>
+                                            <div className="font-medium text-gray-800 pb-2 hover:text-indigo-500 hover:transition-all">{x.sender.name}<BadgeCheckIcon className="ml-1 inline-block w-5 text-indigo-500" /></div>
                                           ) : (
-                                            <div className="font-medium text-gray-800 pb-2">{x.sender.name}</div>
+                                            <div className="font-medium text-gray-800 pb-2 hover:text-indigo-500 hover:transition-all">{x.sender.name}</div>
                                           )
                                         }
                                     </div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap">
-                                  <div className="text-left pb-2">{x.receiver.name}</div>
+                                  <div className="text-left pb-2 hover:text-indigo-500 hover:transition-all">{x.receiver.name}</div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap">
-                                    <div className="text-left font-medium text-green-500 pb-2">{x.amount} CRD</div>
+                                    <div className="text-left font-medium text-green-500 pb-2 hover:text-green-600 hover:transition-all">{x.amount} CRD</div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap">
                                     <div className="text-center hover:text-indigo-500 transition-all pb-2" >{x._id}</div>
@@ -168,19 +169,12 @@ export default function Home({ transactionList, global }) {
   )
 }
 
-export const getServerSideProps = async () => {
-  const [tres, gres] = await Promise.all([
-    fetch("https://api.remastered.nitroapp.de/transactions"),
-    fetch("https://api.remastered.nitroapp.de/global")
-  ]);
-  const [transactionList, global] = await Promise.all([
-    tres.json(),
-    gres.json(),
-  ]);
+export async function getServerSideProps() {
+  const data = await cachedFetch('https://api.remastered.nitroapp.de/overview');
   return {
     props: {
-      transactionList: transactionList,
-      global: global['stats'],
-    },
-  };
-};
+      transactionList: data.transactions,
+      global: data.global["stats"],
+    }
+  }
+}
