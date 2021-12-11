@@ -52,7 +52,7 @@ export default function Home({ transactionList, global }) {
               Home
             </h1>
             <p className="text-lg text-black pt-1 font-medium">
-              General overview
+              General Overview
             </p>
           </div>
         </div>
