@@ -100,7 +100,7 @@ export default function Home({ transactionList, global }) {
             <a
               className="p-6 text-left w-32 rounded-xl hidden md:table-cell"
             >
-              <h3 className="text-xl font-bold">{ global[0].amount }</h3>
+              <h3 className="text-xl font-bold">{ format( global[0].amount ) }</h3>
               <p className="mt-1 text-md">
                 Players
               </p>
@@ -152,7 +152,7 @@ export default function Home({ transactionList, global }) {
                                   <div className="text-left pb-2 hover:text-indigo-500 hover:transition-all">{x.receiver.name}</div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap">
-                                    <div className="text-left font-medium text-green-500 pb-2 hover:text-green-600 hover:transition-all">{x.amount} CRD</div>
+                                    <div className="text-left font-medium text-green-500 pb-2 hover:text-green-600 hover:transition-all">{ format(x.amount) } CRD</div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap hidden md:table-cell">
                                     <div className="text-center hover:text-indigo-500 transition-all pb-2" >{x._id}</div>
