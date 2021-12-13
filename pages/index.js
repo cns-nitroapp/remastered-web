@@ -78,7 +78,7 @@ export default function Home({ transactionList, global }) {
       </div>
 
         <div className="flex flex-wrap max-w-4xl mt-12 transition-all lg:px-18 px-5 cursor-default">
-        <div className="border rounded-xl w-full flex flex-wrap items-center justify-around bg-white hover:bg-lightgrey lg:visible invisible transition-all hover:ring-2 hover:ring-indigo-500">
+        <div className="border rounded-xl w-full flex flex-wrap items-center justify-around bg-white hover:bg-lightgrey transition-all hover:ring-2 hover:ring-indigo-500">
             <a
               className="p-6 text-left w-52 rounded-xl"
             >
@@ -98,7 +98,7 @@ export default function Home({ transactionList, global }) {
             </a>
 
             <a
-              className="p-6 text-left w-32 rounded-xl"
+              className="p-6 text-left w-32 rounded-xl sm:hidden"
             >
               <h3 className="text-xl font-bold">{ global[0].amount }</h3>
               <p className="mt-1 text-md">
@@ -123,7 +123,7 @@ export default function Home({ transactionList, global }) {
                                 <th className="p-0 whitespace-nowrap">
                                     <div className="font-semibold text-left">Amount</div>
                                 </th>
-                                <th className="p-0 whitespace-nowrap">
+                                <th className="p-0 whitespace-nowrap sm:hidden">
                                     <div className="font-semibold text-center">ID</div>
                                 </th>
                             </tr>
@@ -154,7 +154,7 @@ export default function Home({ transactionList, global }) {
                                 <td className="p-2 whitespace-nowrap">
                                     <div className="text-left font-medium text-green-500 pb-2 hover:text-green-600 hover:transition-all">{x.amount} CRD</div>
                                 </td>
-                                <td className="p-2 whitespace-nowrap">
+                                <td className="p-2 whitespace-nowrap sm:hidden">
                                     <div className="text-center hover:text-indigo-500 transition-all pb-2" >{x._id}</div>
                                 </td>
                             </tr>)}
