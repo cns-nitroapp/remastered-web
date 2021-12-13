@@ -186,7 +186,7 @@ export default function Home({ transactionData }) {
                                     </td>
                                   ) : (
                                     <td className="p-2 whitespace-nowrap">
-                                      <div className="font-medium text-gray-800 pb-2 hidden md:table-cell">
+                                      <div className="font-medium text-gray-800 pb-2">
                                       <p className="md:inline-block hidden">Player</p>
                                         <UserIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
