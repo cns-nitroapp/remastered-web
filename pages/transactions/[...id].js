@@ -41,11 +41,11 @@ export default function Home({ transactionData }) {
         reverseOrder={false}
       />
 
-<img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 lg:ml-2 mb-5 absolute top-5 left-5 focus:outline-none hover:ring-2 hover:ring-offset-2 rounded-xl transition-all" onClick={() => router.push("/")}/>
+<img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 mt-5 lg:ml-2 mb-5 md:absolute md:top-5 md:left-5 focus:outline-none hover:ring-2 hover:ring-offset-2 rounded-xl transition-all" onClick={() => router.push("/")}/>
 
-      <div className="flex flex-wrap max-w-4xl mt-32 transition-all lg:px-18 cursor-default justify-between w-full px-5">
+  <div className="flex flex-wrap max-w-4xl md:mt-32 transition-all lg:px-18 cursor-default justify-around md:justify-between w-full">
         <div className="text-center py-2">
-          <div className="text-left">
+          <div className="md:text-left text-center">
             <h1 className="text-4xl font-semibold text-black" onClick={() => router.push("/")}>
               Transaction
             </h1>
@@ -54,7 +54,7 @@ export default function Home({ transactionData }) {
             </p>
           </div>
         </div>
-        <div className="flex text-center h-10">
+        <div className="flex text-center h-10 mt-6 md:mt-0">
           <button
             type="button"
             className="flex items-center pl-5 pr-6 py-2.5 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-almostblack hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black focus:bg-black transition duration-150 ease-in-out"
@@ -67,9 +67,9 @@ export default function Home({ transactionData }) {
       </div>
 
         <div className="flex flex-wrap max-w-4xl mt-12 transition-all lg:px-18 px-5 cursor-default">
-        <div className="border rounded-xl w-full flex flex-wrap items-center justify-around bg-white hover:bg-lightgrey lg:visible invisible transition-all hover:ring-2 hover:ring-indigo-500">
+        <div className="border rounded-xl w-full flex flex-wrap items-center justify-around bg-white hover:bg-lightgrey transition-all hover:ring-2 hover:ring-indigo-500">
             <a
-              className="p-6 text-left w-48 rounded-xl"
+              className="p-6 text-left w-48 rounded-xl hidden md:table-cell"
             >
               <h3 className="text-xl font-bold">{ transactionData.transaction[0].sender.name }</h3>
               <p className="mt-1 text-md">
@@ -78,7 +78,7 @@ export default function Home({ transactionData }) {
             </a>
 
             <a
-              className="p-6 text-left w-48 rounded-xl"
+              className="p-6 text-left w-48 rounded-xl hidden md:table-cell"
             >
               <h3 className="text-xl font-bold">{ transactionData.transaction[0].receiver.name }</h3>
               <p className="mt-1 text-md">
@@ -121,20 +121,20 @@ export default function Home({ transactionData }) {
                                         }
                                     </div>
                                 </td>
-                                <td className="p-2 whitespace-nowrap">
+                                <td className="p-2 whitespace-nowrap hidden md:table-cell">
                                     <div className="text-left pb-2">{ transactionData.transaction[0].sender.uuid }</div>
                                 </td>
                                 {
                                   transactionData.transaction[0].sender.name === "Nitroapp" ? (
                                     <td className="p-2 whitespace-nowrap">
-                                      <div className="font-medium text-gray-800 pb-2">
+                                      <div className="font-medium text-gray-800 pb-2 hidden md:table-cell">
                                         Computer
                                         <ChipIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
                                     </td>
                                   ) : (
                                     <td className="p-2 whitespace-nowrap">
-                                      <div className="font-medium text-gray-800 pb-2">
+                                      <div className="font-medium text-gray-800 pb-2 hidden md:table-cell">
                                         Player
                                         <UserIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
@@ -173,20 +173,20 @@ export default function Home({ transactionData }) {
                                         }
                                     </div>
                                 </td>
-                                <td className="p-2 whitespace-nowrap">
+                                <td className="p-2 whitespace-nowrap hidden md:table-cell">
                                     <div className="text-left pb-2">{ transactionData.transaction[0].receiver.uuid }</div>
                                 </td>
                                 {
                                   transactionData.transaction[0].receiver.name === "Nitroapp" ? (
                                     <td className="p-2 whitespace-nowrap">
-                                      <div className="font-medium text-gray-800 pb-2">
+                                      <div className="font-medium text-gray-800 pb-2 hidden md:table-cell">
                                         Computer
                                         <ChipIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
                                     </td>
                                   ) : (
                                     <td className="p-2 whitespace-nowrap">
-                                      <div className="font-medium text-gray-800 pb-2">
+                                      <div className="font-medium text-gray-800 pb-2 hidden md:table-cell">
                                         Player
                                         <UserIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
