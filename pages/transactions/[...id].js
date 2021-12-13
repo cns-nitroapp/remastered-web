@@ -43,7 +43,7 @@ export default function Home({ transactionData }) {
 
 <img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 mt-5 lg:ml-2 mb-5 md:absolute md:top-5 md:left-5 focus:outline-none hover:ring-2 hover:ring-offset-2 rounded-xl transition-all" onClick={() => router.push("/")}/>
 
-  <div className="flex flex-wrap max-w-4xl md:mt-32 transition-all lg:px-18 cursor-default justify-around md:justify-between w-full">
+  <div className="flex flex-wrap max-w-4xl md:mt-32 transition-all lg:px-18 cursor-default justify-around md:justify-between w-full md:px-5">
         <div className="text-center py-2">
           <div className="md:text-left text-center">
             <h1 className="text-4xl font-semibold text-black" onClick={() => router.push("/")}>
@@ -127,15 +127,15 @@ export default function Home({ transactionData }) {
                                 {
                                   transactionData.transaction[0].sender.name === "Nitroapp" ? (
                                     <td className="p-2 whitespace-nowrap">
-                                      <div className="font-medium text-gray-800 pb-2 hidden md:table-cell">
-                                        Computer
-                                        <ChipIcon className="ml-2 inline-block w-5 text-indigo-500" />
+                                      <div className="font-medium text-gray-800 pb-2">
+                                      <p className="md:inline-block hidden">Computer</p>
+                                        <ChipIcon className="ml-2 w-5 text-indigo-500" />
                                       </div>
                                     </td>
                                   ) : (
                                     <td className="p-2 whitespace-nowrap">
-                                      <div className="font-medium text-gray-800 pb-2 hidden md:table-cell">
-                                        Player
+                                      <div className="font-medium text-gray-800 pb-2">
+                                      <p className="md:inline-block hidden">Player</p>
                                         <UserIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
                                     </td>
@@ -179,15 +179,15 @@ export default function Home({ transactionData }) {
                                 {
                                   transactionData.transaction[0].receiver.name === "Nitroapp" ? (
                                     <td className="p-2 whitespace-nowrap">
-                                      <div className="font-medium text-gray-800 pb-2 hidden md:table-cell">
-                                        Computer
+                                      <div className="font-medium text-gray-800 pb-2">
+                                        <p className="md:inline-block hidden">Computer</p>
                                         <ChipIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
                                     </td>
                                   ) : (
                                     <td className="p-2 whitespace-nowrap">
                                       <div className="font-medium text-gray-800 pb-2 hidden md:table-cell">
-                                        Player
+                                      <p className="md:inline-block hidden">Player</p>
                                         <UserIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
                                     </td>

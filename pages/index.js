@@ -46,7 +46,7 @@ export default function Home({ transactionList, global }) {
 
 <img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 mt-5 lg:ml-2 mb-5 md:absolute md:top-5 md:left-5 focus:outline-none hover:ring-2 hover:ring-offset-2 rounded-xl transition-all" onClick={() => router.push("/")}/>
 
-      <div className="flex flex-wrap max-w-4xl md:mt-32 transition-all lg:px-18 cursor-default justify-around md:justify-between w-full">
+      <div className="flex flex-wrap max-w-4xl md:mt-32 transition-all lg:px-18 cursor-default justify-around md:justify-between md:px-5 w-full">
         <div className="text-center py-2">
           <div className="md:text-left text-center">
             <h1 className="text-4xl font-semibold text-black">
