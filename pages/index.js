@@ -46,9 +46,9 @@ export default function Home({ transactionList, global }) {
 
       <img src="/black-transparent.png" alt="Nitroapp Logo" className="h-20 lg:ml-2 mb-5 absolute top-5 left-5 focus:outline-none hover:ring-2 hover:ring-offset-2 rounded-xl transition-all" onClick={() => router.push("/")}/>
 
-      <div className="flex flex-wrap max-w-4xl mt-32 transition-all lg:px-18 cursor-default justify-between w-full px-5">
+      <div className="flex flex-wrap max-w-4xl mt-32 transition-all lg:px-18 cursor-default justify-around md:justify-between w-full">
         <div className="text-center py-2">
-          <div className="text-left">
+          <div className="md:text-left text-center">
             <h1 className="text-4xl font-semibold text-black">
               Home
             </h1>
@@ -57,7 +57,7 @@ export default function Home({ transactionList, global }) {
             </p>
           </div>
         </div>
-        <div className="flex text-center h-10">
+        <div className="text-center h-10 hidden md:flex">
           <button
             type="button"
             className="flex items-center mr-4 pl-5 pr-6 py-2.5 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-almostblack hover:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black focus:bg-black transition duration-150 ease-in-out"
@@ -89,7 +89,7 @@ export default function Home({ transactionList, global }) {
             </a>
 
             <a
-              className="p-6 text-left w-52 rounded-xl"
+              className="p-6 text-left w-52 rounded-xl hidden md:table-cell"
             >
               <h3 className="text-xl font-bold">{ format(global[0].average) } CRD</h3>
               <p className="mt-1 text-md">
@@ -98,7 +98,7 @@ export default function Home({ transactionList, global }) {
             </a>
 
             <a
-              className="p-6 text-left w-32 rounded-xl sm:hidden"
+              className="p-6 text-left w-32 rounded-xl hidden md:table-cell"
             >
               <h3 className="text-xl font-bold">{ global[0].amount }</h3>
               <p className="mt-1 text-md">
@@ -106,7 +106,7 @@ export default function Home({ transactionList, global }) {
               </p>
             </a>
           </div>
-          <div className="w-full flex flex-wrap items-left mt-28 mb-28">
+          <div className="w-full flex flex-wrap items-left md:mt-28 mb-28 mt-16">
             <a className="text-left">
               <h3 className="text-lg font-medium">Latest transactions</h3>
             </a>
@@ -117,13 +117,13 @@ export default function Home({ transactionList, global }) {
                                 <th className="p-5 whitespace-nowrap">
                                     <div className="font-semibold text-left">From</div>
                                 </th>
-                                <th className="p-5 whitespace-nowrap">
+                                <th className="p-5 whitespace-nowrap hidden md:table-cell">
                                     <div className="font-semibold text-left">To</div>
                                 </th>
                                 <th className="p-0 whitespace-nowrap">
                                     <div className="font-semibold text-left">Amount</div>
                                 </th>
-                                <th className="p-0 whitespace-nowrap sm:hidden">
+                                <th className="p-0 whitespace-nowrap hidden md:table-cell">
                                     <div className="font-semibold text-center">ID</div>
                                 </th>
                             </tr>
@@ -148,13 +148,13 @@ export default function Home({ transactionList, global }) {
                                         }
                                     </div>
                                 </td>
-                                <td className="p-2 whitespace-nowrap">
+                                <td className="p-2 whitespace-nowrap hidden md:table-cell">
                                   <div className="text-left pb-2 hover:text-indigo-500 hover:transition-all">{x.receiver.name}</div>
                                 </td>
                                 <td className="p-2 whitespace-nowrap">
                                     <div className="text-left font-medium text-green-500 pb-2 hover:text-green-600 hover:transition-all">{x.amount} CRD</div>
                                 </td>
-                                <td className="p-2 whitespace-nowrap sm:hidden">
+                                <td className="p-2 whitespace-nowrap hidden md:table-cell">
                                     <div className="text-center hover:text-indigo-500 transition-all pb-2" >{x._id}</div>
                                 </td>
                             </tr>)}
