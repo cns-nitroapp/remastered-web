@@ -129,7 +129,7 @@ export default function Home({ transactionData }) {
                                     <td className="p-2 whitespace-nowrap">
                                       <div className="font-medium text-gray-800 pb-2">
                                       <p className="md:inline-block hidden">Computer</p>
-                                        <ChipIcon className="ml-2 w-5 text-indigo-500" />
+                                        <ChipIcon className="ml-2 inline-block w-5 text-indigo-500" />
                                       </div>
                                     </td>
                                   ) : (
