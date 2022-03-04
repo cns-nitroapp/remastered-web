@@ -32,7 +32,7 @@ export default function Home({ transactionData }) {
       <Head>
         <title>Nitroapp: Transaction {router.query.id}</title>
         <link rel="icon" href="/favicon.ico" />
-        <meta name="description" content={"Transaction between " + transactionData.transaction[0].sender.name + " and " +  transactionData.transaction[0].receiver.name} />
+        <meta name="description" content={transactionData.transaction[0].sender.name + " sent " +  transactionData.transaction[0].receiver.name + " " + transactionData.transaction[0].amount + " CRD."} />
       </Head>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
